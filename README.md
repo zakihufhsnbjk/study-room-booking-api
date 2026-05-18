@@ -3,32 +3,41 @@
 A REST API for booking study rooms built with Spring Boot and PostgreSQL.
 
 ## Live API
-https://YOUR-RAILWAY-URL.up.railway.app
+
+https://study-room-booking-api-2b3x.onrender.com/swagger-ui/index.html
 
 ## Features
+
 - JWT authentication (register/login)
 - Prevents overlapping bookings
 - Layered architecture (Controller → Service → Repository)
-- Input validation and correct HTTP error codes (400, 409, 403)
-- Dockerised with docker-compose
-- Deployed on Railway
+- Input validation and correct HTTP status codes (400, 409, 403)
+- Deployed on Render with PostgreSQL
 
 ## Tech Stack
-Java 21, Spring Boot 4, PostgreSQL, JWT, Docker, Maven
+
+Java 21, Spring Boot 4, PostgreSQL, JWT, Maven
 
 ## Endpoints
 
 ### Auth (public)
-POST /auth/register — create account, returns JWT token
-POST /auth/login    — login, returns JWT token
 
-### Bookings (requires Authorization: Bearer token)
-GET  /bookings — list all bookings
-POST /bookings — create a booking
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/auth/register` | Create account, returns JWT token |
+| POST | `/auth/login` | Login, returns JWT token |
 
-## Run Locally with Docker
-docker compose up --build
+### Bookings (requires `Authorization: Bearer <token>`)
 
-## Run Locally without Docker
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/bookings` | List all bookings |
+| POST | `/bookings` | Create a booking |
+
+## Run Locally
+
+```bash
 ./mvnw spring-boot:run
-Requires PostgreSQL on localhost:5432/studyroom
+```
+
+Requires PostgreSQL on `localhost:5432/studyroom`
